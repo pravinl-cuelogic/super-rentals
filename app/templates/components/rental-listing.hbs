@@ -1,5 +1,11 @@
 <article class="listing">
-  <img src={{this.rental.image}} alt="">
+  <a 
+    class="image {{if this.isWide "wide"}}" role="button"
+    onclick={{action "toggleImageSize"}}
+  >
+  	<img src={{this.rental.image}} alt="">
+  	<small>View Large</small>
+  </a>
   <div class="details">
     <h3>{{this.rental.title}}</h3>
     <div class="detail owner">
