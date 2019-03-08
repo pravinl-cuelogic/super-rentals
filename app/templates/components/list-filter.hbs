@@ -1,0 +1,16 @@
+{{!--The template contains an {{input}} helper that renders as a text field, in which the user can type a pattern to filter the list of cities used in a search. --}}
+{{!-- The value property of the input will be kept in sync with the value property in the component. --}}
+{{!-- The key-up property will be bound to the handleFilterEntry action. The handleFilterEntry action will apply the search term filter to the list of rentals, and set a component attribute called results. --}}
+
+
+{{input 
+	value=this.value
+	key-up=(action "handleFilterEntry")
+	class="light"
+	placeholder="Filter By City"
+}}
+
+
+{{!-- The results are passed to the {{yield}} helper in the template. In the yielded block component, those same results are referred to as |filteredResults|. --}}
+
+{{yield this.results}}

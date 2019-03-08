@@ -8,6 +8,14 @@
   {{/link-to}}
 </div>
 
-{{#each this.model as |rentalUnit|}}
-  <RentalListing @rental={{rentalUnit}} />
-{{/each}}
+<ListFilter
+  @filter={{action "filterByCity"}} as |filterResults|
+>
+  <ul class="results">
+  	{{#each filterResults as |rentalUnit|}}
+  	  <li><RentalListing @rental={{rentalUnit}}></RentalListing></li>
+  	{{/each}}
+  </ul>
+</ListFilter>
+{{outlet}}
+
