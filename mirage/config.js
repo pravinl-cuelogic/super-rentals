@@ -74,13 +74,55 @@ export default function() {
         image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg',
         description: "Convenience is at your doorstep with this charming downtown rental. Great restaurants and active night life are within a few feet."
       }
+    }, {
+      type: 'rentals',
+      id: 'shanivar-wada',
+      attributes: {
+        title: 'Shanivar Wada',
+        owner: 'Peshawa',
+        city: 'Pune',
+        category: 'Apartment',
+        bedrooms: 30,
+        image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg',
+        description: "Convenience is at your doorstep with this charming downtown rental. Great restaurants and active night life are within a few feet."
+      }
+    }, {
+      type: 'rentals',
+      id: 'purandar-fort',
+      attributes: {
+        title: 'Purandar Fort',
+        owner: 'Shivaji Bhosale',
+        city: 'Purandar',
+        category: 'Estate',
+        bedrooms: 4,
+        image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg',
+        description: "Convenience is at your doorstep with this charming downtown rental. Great restaurants and active night life are within a few feet."
+      }
+    }, {
+      type: 'rentals',
+      id: 'bhagawant-temple',
+      attributes: {
+        title: 'Bhagawant Temple',
+        owner: 'Bhagawant Temple Trust',
+        city: 'Barshi',
+        category: 'Townhouse',
+        bedrooms: 50,
+        image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg',
+        description: "Convenience is at your doorstep with this charming downtown rental. Great restaurants and active night life are within a few feet."
+      }
     }
   ]
   
   this.get('/rentals',function(db, request) {
+    console.log('Mirage/config.js===>',request.queryParams);
     if (request.queryParams.city !== undefined) {
       let filteredRentals = rentals.filter(function (i) {
         return i.attributes.city.toLowerCase().indexOf(request.queryParams.city.toLowerCase()) !== -1;
+      });
+      return {data: filteredRentals};
+    } else if (request.queryParams.title && request.queryParams.title !== undefined) {
+      let filteredRentals = rentals.filter(function (i) {
+        return i.attributes.title.toLowerCase().indexOf(request.queryParams.title.toLowerCase()) !== -1;
       });
       return {data: filteredRentals};
     } else {
