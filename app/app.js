@@ -6,7 +6,8 @@ import config from './config/environment';
 const App = Application.extend({
   modulePrefix: config.modulePrefix,
   podModulePrefix: config.podModulePrefix,
-  Resolver
+  Resolver,
+  LOG_TRANSITIONS: true //to log each transition to console.
 });
 
 loadInitializers(App, config.modulePrefix);

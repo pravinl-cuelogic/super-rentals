@@ -2,15 +2,24 @@
 {{!-- The value property of the input will be kept in sync with the value property in the component. --}}
 {{!-- The key-up property will be bound to the handleFilterEntry action. The handleFilterEntry action will apply the search term filter to the list of rentals, and set a component attribute called results. --}}
 
-
 {{input 
-	value=this.value
-	key-up=(action "handleFilterEntry")
+	id="cityFilter"
+	value=this.city
+	key-up=(action "handleFilterByCity")
 	class="light"
 	placeholder="Filter By City"
 }}
 
+{{input 
+	id="nameFilter"
+	value=this.title
+	key-up=(action "handleFilterByTitle")
+	bubbles=false
+	class="light"
+	placeholder="Filter By Title"
+}}
+
+{{!--log 'Title is ' this.title--}}
 
 {{!-- The results are passed to the {{yield}} helper in the template. In the yielded block component, those same results are referred to as |filteredResults|. --}}
-
 {{yield this.results}}

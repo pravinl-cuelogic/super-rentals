@@ -9,17 +9,34 @@ Ember will know that a controller with the name of rentals will apply to the rou
 
 export default Controller.extend({
 	actions: {
-		filterByCity(param){
-			if (param !== '') {
+		filterByTitle(title){
+			// debugger;
+			console.log('Controller-filterByTitle(param)--->',title);
+			if (title !== '') {
 				return this.store
-          .query('rental', { city: param }).then((results) => {
-            return { query: param, results: results };
-          });
-			} else {
+		      .query('rental', { title: title }).then((results) => {
+		        return { query: title, results: results };
+		      });
+				} else {
+					return this.store
+		      .findAll('rental').then((results) => {
+		        return { query: title, results: results };
+		      });
+			}
+		},
+		filterByCity(city){
+			// debugger;
+			console.log('Controller-filterByCity(param)--->',city);
+			if (city !== '') {
 				return this.store
-          .findAll('rental').then((results) => {
-            return { query: param, results: results };
-          });
+	          .query('rental', { city: city }).then((results) => {
+	            return { query: city, results: results };
+	          });
+				} else {
+					return this.store
+	          .findAll('rental').then((results) => {
+	            return { query: city, results: results };
+	          });
 			}
 		}
 	}

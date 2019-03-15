@@ -11,9 +11,13 @@
 <ListFilter
   @filter={{action "filterByCity"}} as |filterResults|
 >
+  {{!--debugger--}}
+
   <ul class="results">
   	{{#each filterResults as |rentalUnit|}}
   	  <li><RentalListing @rental={{rentalUnit}}></RentalListing></li>
+    {{else}}
+      <li>No result found.</li>
   	{{/each}}
   </ul>
 </ListFilter>

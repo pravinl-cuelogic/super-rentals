@@ -7,21 +7,40 @@ import Component from '@ember/component';
 export default Component.extend({
 	classNames: ['list-filter'],
 	value: '',
+	title: '',
+	city: '',
 	init(){
+		// debugger;
 		this._super(...arguments);
 		this.filter('').then((allResults) => {
-      this.set('results', allResults.results);
-    });
+	        this.set('results', allResults.results);
+	    });
 	},
 	actions: {
-		handleFilterEntry(){
-			let filterInputValue = this.value;
+	   	handleFilterByTitle(){
+			let filterInputValue = this.title;
 			let filterAction = this.filter;
+			// let controllerMethods = this.get('controller');
+			// debugger;
+			console.log('Component/list-filter.js By Name===>', this.title, '------->',this);
 			filterAction(filterInputValue).then((filterResults) => {
-        if (filterResults.query === this.value) {
-          this.set('results', filterResults.results);
-        }
-      });
-		}
+			// controllerMethods.send("filterByTitle", filterInputValue).then((filterResults) => {
+				// debugger;
+	            if (filterResults.query === this.title) {
+	                this.set('results', filterResults.results);
+	            }
+	        });
+		},
+		handleFilterByCity(){
+	   		// debugger;
+			let filterInputValue = this.city;
+			let filterAction = this.filter;
+			console.log('Component/list-filter.js By City===>', this.city, '------->',this.filter);
+			filterAction(filterInputValue).then((filterResults) => {
+	            if (filterResults.query === this.city) {
+	                this.set('results', filterResults.results);
+	            }
+	        });
+		},
 	}
 });
